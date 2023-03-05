@@ -1,0 +1,63 @@
+﻿@page
+@model ExternalLoginModel
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h4 id="external-login-title">Liên kết @Model.ProviderDisplayName tài khoản của bạn.</h4>
+<hr />
+
+<p id="external-login-description" class="text-info">
+    Bạn đã xác thực thành công với <strong>@Model.ProviderDisplayName</strong>.
+    Vui lòng nhập địa chỉ email cho trang web này bên dưới và nhấp vào nút Đăng ký để hoàn tất
+    đăng nhập.
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.StreetAddress"></label>
+                <input asp-for="Input.StreetAddress" class="form-control" />
+                <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Village"></label>
+                <input asp-for="Input.Village" class="form-control" />
+                <span asp-validation-for="Input.Village" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.District"></label>
+                <input asp-for="Input.District" class="form-control" />
+                <span asp-validation-for="Input.District" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.City"></label>
+                <input asp-for="Input.City" class="form-control" />
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Đăng ký</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

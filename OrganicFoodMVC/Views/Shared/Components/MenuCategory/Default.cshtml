@@ -1,0 +1,10 @@
+﻿<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-bars text-muted mr-2"></i> Thể loại </a>
+    <div class="dropdown-menu">
+        @foreach (var item in Model)
+        {
+            <a class="dropdown-item" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId="@item.Id" >@item.Name</a>
+        }
+
+    </div>
+</li>

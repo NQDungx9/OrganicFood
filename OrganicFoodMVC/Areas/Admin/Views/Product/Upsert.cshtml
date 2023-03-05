@@ -1,0 +1,138 @@
+﻿@model OrganicFoodMVC.Models.ViewModels.ProductVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Tạo sản phẩm";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row p-3 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.Product.Id != 0)
+        {
+            //edit
+            title = "Cập nhập sản phẩm";
+            <input type="hidden" asp-for="Product.Id" />
+            <input type="hidden" asp-for="Product.ImageUrl" />
+        }
+        <div class="col-12 border-bottom">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label asp-for="Product.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Name" class="form-control" />
+                    <span asp-validation-for="Product.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label asp-for="Product.Discription"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Product.Discription" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    Loại sản phẩm
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Product.CategoryId, Model.CategoryList, "-Chọn loại sản phẩm-",
+                   new { @class = "form-control" })
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    Thương hiệu
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Product.BrandId, Model.BrandList, "-Chọn thương hiệu-",
+                   new { @class = "form-control" })
+                    <span asp-validation-for="Product.BrandId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label asp-for="Product.Quantity"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Quantity" class="form-control" />
+                    <span asp-validation-for="Product.Quantity" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    <label asp-for="Product.Price"></label>
+                </div>
+                <div class="col-4">
+                    <input asp-for="Product.Price" class="form-control" />
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    @Html.DropDownListFor(m => m.Product.UnitId, Model.UnitList, "-Chọn đơn vị tính-",
+                   new { @class = "form-control" })
+                    <span asp-validation-for="Product.UnitId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="col-4">
+                    Image
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="col-8 offset-4">
+                    @if (Model.Product.Id != 0)
+                    {
+                        <partial name="_EditAndBackToListButton" model="Model.Product.Id" />
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control">Thêm</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-success form-control">Trở về</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @if (Model.Product.Id != 0)
+        {
+            <div class="col-3 offset-1 pt-4">
+                <img src="@Model.Product.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+            </div>
+        }
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.tiny.cloud/1/owcgv04sxzjgttpdi8mcreegbqshc84k9xdki7gz94gkzg38/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format',
+        });
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal("Lỗi", "Hãy chọn ảnh", "error");
+                return false;
+            }
+            return true;
+        };
+    </script>
+
+}

@@ -1,0 +1,175 @@
+﻿@model OrganicFoodMVC.Models.ViewModels.ShoppingCartVM
+@using Microsoft.Extensions.Options
+
+@inject IOptions<OrganicFoodMVC.Utility.StripeSettings> Stripe
+@{
+    ViewData["Title"] = "Thông tin xác nhận";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <br />
+    <div class="backgroundWhiteBorder">
+        <div class="container">
+            <div class="card">
+                <div class="card-header bg-dark text-light ml-0 d-flex container">
+                    <div class="col-6">
+                        <i class="fa fa-shopping-cart"></i> &nbsp;
+                        Thông tin đơn hàng
+                    </div>
+                    <div class="col-6 text-lg-right">
+                        <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="btn btn-outline-primary btn-sm">Trở về giỏ hàng</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container rounded p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-5 pb-4">
+                                <div class="row">
+                                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="text-info">Thông tin người nhận:</span>
+                                    </h4>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Họ Tên</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.Name" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Số điện thoại</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.PhoneNumber" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Số nhà, đường</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.StreetAddress" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.StreetAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Xã (Thôn)</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.Village" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.Village" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Quận (Huyện)</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.District" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.District" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row my-1">
+                                    <div class="col-3">
+                                        <label>Tỉnh (Thành Phố)</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <input asp-for="OrderHeader.City" type="text" class="form-control" />
+                                        <span asp-validation-for="OrderHeader.City" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 offset-lg-1">
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-info">Gói hàng:</span>
+                                </h4>
+                                <ul class="list-group mb-3">
+                                    @foreach (var details in Model.ListCart)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <div>
+                                                <h6 class="my-0">@details.Product.Name</h6>
+                                                <small class="text-muted">Số Lượng: @details.Count</small>
+                                            </div>
+                                            <span class="text-muted">@((details.Price * details.Count).ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))) </span>
+                                        </li>
+                                    }
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <small class="text-info">Tổng tiền (VNĐ)</small>
+                                        <strong class="text-info">@(Model.OrderHeader.OrderTotal.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")))</strong>
+                                    </li>
+                                </ul>
+
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-info">Phương thức thanh toán:</span>
+                                </h4>
+                                <ul class="list-group mb-3">
+                                    @*<li class="list-group-item d-flex justify-content-between mb-2">
+                                        <div>
+                                            <h6 class="my-0">Thanh toán khi nhận hàng</h6>
+                                        </div>
+                                        <input type="radio" name="payment" checked="checked" id="paymentOnDelivery" value="paymentOnDelivery"/>
+                                    </li>*@
+                                    <li class="list-group-item d-flex justify-content-between mb-2 border border-1">
+                                        <div>
+                                            <h6 class="my-0">Stripe</h6>
+                                        </div>
+                                        <input type="radio" checked="checked" name="payment" id="stripe" value="stripe"/>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-12 col-md-8 pt-2">
+                            <p style="color:maroon; font-size:14px;">Ngày giao dự kiến: @DateTime.Now.AddDays(7).ToShortDateString() - @DateTime.Now.AddDays(14).ToShortDateString()</p>
+                        </div>
+                        <div class="col-12 col-md-4">
+
+                            @{
+                                var OrderTotalForStripe = Model.OrderHeader.OrderTotal;
+                            }
+
+                            @if (Model.OrderHeader.ApplicationUser.Company == null ||
+                   !Model.OrderHeader.ApplicationUser.Company.IsAuthorizedCompany)
+                            {
+
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                        data-key="@Stripe.Value.PublishableKey"
+                                        data-amount="@OrderTotalForStripe"
+                                        data-name="Organic Food"
+                                        data-label="Đặt Hàng"
+                                        data-description="Mua rau, củ, quả xanh tươi sạch."
+                                        data-locale="auto"
+                                        data-currency="vnd"
+                                        data-allow-remember-me="false"
+                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
+                                </script>
+                                <script>
+                                    document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                                </script>
+                                <button type="submit" value="Place Order" class="btn btn-primary form-control">Đặt Hàng</button>
+                            }
+                            else
+                            {
+                                <button type="submit" value="Place Order" class="btn btn-primary form-control">Đặt Hàng</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

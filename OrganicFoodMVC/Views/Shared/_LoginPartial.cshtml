@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="widget-header mr-3">
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="widget-view">
+            <div class="icon-area">
+                <i class="fa fa-user"></i>
+            </div>
+            <small class="text"> @User.Identity.Name </small>
+        </a>
+    </div>
+
+    <div class="widget-header mr-3">
+        <form class="p-0" style="min-width:auto !important;" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="border-0">
+                <div class="icon-area">
+                    <i class="fa fa-sign-out"></i>
+                </div>
+                <small class="text">Thoát</small>
+            </button>
+        </form>
+    </div>
+    @*<li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        </li>*@
+    @* <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link">Logout</button>
+            </form>
+        </li>*@
+}
+else
+{
+    <div class="widget-header mr-3">
+        <a asp-area="Identity" asp-page="/Account/Register" class="widget-view">
+            <div class="icon-area">
+                <i class="fa fa-registered"></i>
+            </div>
+            <small class="text">Đăng ký</small>
+        </a>
+    </div>
+    <div class="widget-header mr-3">
+        <a asp-area="Identity" asp-page="/Account/Login" class="widget-view">
+            <div class="icon-area">
+                <i class="fa fa-sign-in-alt"></i>
+            </div>
+            <small class="text"> Đăng nhập </small>
+        </a>
+    </div>
+
+       @* <li class="nav-item class=" widget-view"">
+        <a class="widget-view" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
+        </li>
+        <li class="nav-item class=" widget-view"">
+        <a class="widget-view" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
+        </li>*@
+}

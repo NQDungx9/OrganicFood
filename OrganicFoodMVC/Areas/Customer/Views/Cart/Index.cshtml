@@ -1,0 +1,107 @@
+﻿@model OrganicFoodMVC.Models.ViewModels.ShoppingCartVM
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <br />
+    @if (Model.ListCart.Count() > 0)
+    {
+
+        <div class="backgroundWhiteBorder">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header d-flex bg-dark text-light ml-0 container">
+                        <div class="col-6">
+                            <i class="fa fa-shopping-cart"></i> &nbsp;
+                            Giỏ Hàng
+                        </div>
+                        <div class="col-6 text-right">
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-primary btn-sm">Tiếp tục mua sắm</a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        @foreach (var item in Model.ListCart)
+                        {
+                            <div class="row">
+                                <div class="d-none d-lg-block col-lg-1 text-center py-2">
+                                    <img src="@item.Product.ImageUrl" class="rounded" width="100%" />
+                                </div>
+                                <div class="col-12 text-sm-center col-lg-5 text-lg-left">
+                                    <h5><strong>@item.Product.Name</strong></h5>
+                                    <p><small>@Html.Raw(item.Product.Discription)</small></p>
+                                </div>
+                                <div class="col-12 text-sm-center col-lg-6 text-lg-right row">
+                                    <div class="col-4 text-md-left" style="padding-top:5px;">
+                                        <h6><strong>@item.Price.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))<span class="text-muted"> x </span> @item.Count </strong></h6>
+                                    </div>
+                                    <div class="col-2 col-sm-4 col-lg-5">
+                                        <div class="float-lg-left mx-1">
+                                            <a asp-action="plus" asp-route-cartId="@item.Id" class="btn btn-primary">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                        <div class="float-lg-left mx-1">
+                                            <a asp-action="minus" asp-route-cartId="@item.Id" class="btn btn-danger">
+                                                <i class="fas fa-minus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-sm-4 col-lg-2 text-right">
+                                        <a asp-action="remove" asp-route-cartId="@item.Id" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                        }
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <span class="text-info"> Tổng (VNĐ)</span>
+                                        <strong class="text-info"><span id="txtOrderTotal">@Model.OrderHeader.OrderTotal.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</span></strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="card-footer row">
+                            @if (!Model.OrderHeader.ApplicationUser.EmailConfirmed
+                           && Model.OrderHeader.ApplicationUser.CompanyId != null
+                           && Model.OrderHeader.ApplicationUser.Company.IsAuthorizedCompany)
+                            {
+                                <div class="col-8 text-danger">
+                                    Email Phải được xác nhận cho khách hàng được ủy quyền!
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-outline-warning btn-sm">
+                                        Nhấn vào đây để gửi lại Email xác nhận!
+                                    </button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
+
+                                    <a asp-area="Customer" asp-controller="Cart" asp-action="Summary" class="btn btn-success form-control">Xác nhận giỏ hàng</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div>Không có sản phẩm trong giỏ hàng.</div>
+    }
+</form>

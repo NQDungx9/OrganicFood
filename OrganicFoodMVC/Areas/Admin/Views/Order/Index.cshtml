@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewData["Title"] = "Hóa Đơn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var status = Context.Request.Query["status"];
+
+    var pending = "text-primary";
+    var all = "text-primary";
+    var inprocess = "text-primary";
+    var completed = "text-primary";
+    var rejected = "text-primary";
+
+    switch (status)
+    {
+        case "pending":
+            pending = "active text-white";
+            break;
+        case "inprocess":
+            inprocess = "active text-white";
+            break;
+        case "completed":
+            completed = "active text-white";
+            break;
+        case "rejected":
+            rejected = "active text-white";
+            break;
+        default:
+            all = "active text-white";
+            break;
+    }
+}
+
+
+<br />
+<div class="border p-3">
+    <div class="d-flex justify-content-between mb-3">
+        <div class="p-2">
+            <h2 class="text-primary">Danh sách hóa đơn</h2>
+        </div>
+        <div class="p-2">
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="pending">
+                <li class="list-group-item @pending">Chưa xử lý</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="inprocess">
+                <li class="list-group-item @inprocess">Đang chờ</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="completed">
+                <li class="list-group-item @completed">Hoàn thành</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="rejected">
+                <li class="list-group-item @rejected">Đơn bị hủy</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="all">
+                <li class="list-group-item @all">Tất cả</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+
+    <br />
+
+    <table id="tblData" class="table table-striped table-bordered pt-2" style="width: 100%">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Điện thoại</th>
+                <th>Email</th>
+                <th>Trạng thái</th>
+                <th>Tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+    @section Scripts {
+        <script src="~/js/order.js"></script>
+    }

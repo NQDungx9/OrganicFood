@@ -1,0 +1,293 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-OrganicFoodMVC-288B6501-F3A0-4687-816C-6A8345E6858E</UserSecretsId>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Admin\Data\**" />
+    <Compile Remove="Areas\Admin\Models\**" />
+    <Content Remove="Areas\Admin\Data\**" />
+    <Content Remove="Areas\Admin\Models\**" />
+    <EmbeddedResource Remove="Areas\Admin\Data\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\**" />
+    <None Remove="Areas\Admin\Data\**" />
+    <None Remove="Areas\Admin\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Assets\js\jquery.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.0.5" />
+    <PackageReference Include="EPPlus.Interfaces" Version="6.0.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.16" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Stripe.net" Version="39.110.0" />
+    <PackageReference Include="Twilio" Version="5.75.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrganicFoodMVC.DataAccess\OrganicFoodMVC.DataAccess.csproj" />
+    <ProjectReference Include="..\OrganicFoodMVC.Models\OrganicFoodMVC.Models.csproj" />
+    <ProjectReference Include="..\OrganicFoodMVC.Utility\OrganicFoodMVC.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\products\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Assets\css\.DS_Store" />
+    <None Include="wwwroot\Assets\css\bootstrap.css" />
+    <None Include="wwwroot\Assets\css\bootstrap.css.map" />
+    <None Include="wwwroot\Assets\css\responsive.css" />
+    <None Include="wwwroot\Assets\css\responsive.css.map" />
+    <None Include="wwwroot\Assets\css\ui.css" />
+    <None Include="wwwroot\Assets\css\ui.css.map" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\.DS_Store" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\all.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\all.min.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\brands.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\brands.min.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\fontawesome.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\fontawesome.min.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\regular.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\regular.min.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\solid.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\solid.min.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\svg-with-js.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\svg-with-js.min.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\v4-shims.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\css\v4-shims.min.css" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-brands-400.eot" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-brands-400.woff" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-regular-400.eot" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-regular-400.woff" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-solid-900.eot" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-solid-900.woff" />
+    <None Include="wwwroot\Assets\fonts\fontawesome\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\Assets\fonts\roboto\font.css" />
+    <None Include="wwwroot\Assets\fonts\roboto\Roboto-Bold.ttf" />
+    <None Include="wwwroot\Assets\fonts\roboto\Roboto-Light.ttf" />
+    <None Include="wwwroot\Assets\fonts\roboto\Roboto-Medium.ttf" />
+    <None Include="wwwroot\Assets\fonts\roboto\Roboto-Regular.ttf" />
+    <None Include="wwwroot\Assets\fonts\roboto\Roboto-Thin.ttf" />
+    <None Include="wwwroot\Assets\images\.DS_Store" />
+    <None Include="wwwroot\Assets\images\avatars\avatar1.jpg" />
+    <None Include="wwwroot\Assets\images\avatars\avatar2.jpg" />
+    <None Include="wwwroot\Assets\images\avatars\avatar3.jpg" />
+    <None Include="wwwroot\Assets\images\banners\.DS_Store" />
+    <None Include="wwwroot\Assets\images\banners\ad-sm.png" />
+    <None Include="wwwroot\Assets\images\banners\ad.png" />
+    <None Include="wwwroot\Assets\images\banners\banner-item1.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner-item2.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner-item3.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner1.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner2.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner3.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner4.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner5.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner6.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner7.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner8.jpg" />
+    <None Include="wwwroot\Assets\images\banners\banner9.jpg" />
+    <None Include="wwwroot\Assets\images\banners\HPB_Hero.png" />
+    <None Include="wwwroot\Assets\images\banners\slide1.jpg" />
+    <None Include="wwwroot\Assets\images\banners\slide2.jpg" />
+    <None Include="wwwroot\Assets\images\banners\slide3.jpg" />
+    <None Include="wwwroot\Assets\images\favicon.ico" />
+    <None Include="wwwroot\Assets\images\icons\.DS_Store" />
+    <None Include="wwwroot\Assets\images\icons\flags\AU%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\AU.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\CN%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\CN.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\DE%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\DE.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\GB%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\GB.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\IN%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\IN.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\RU%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\RU.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\TR%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\TR.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\US%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\US.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\UZ%402x.png" />
+    <None Include="wwwroot\Assets\images\icons\flags\UZ.png" />
+    <None Include="wwwroot\Assets\images\icons\pay-american-ex.png" />
+    <None Include="wwwroot\Assets\images\icons\pay-bank.png" />
+    <None Include="wwwroot\Assets\images\icons\pay-mastercard.png" />
+    <None Include="wwwroot\Assets\images\icons\pay-visa-el.png" />
+    <None Include="wwwroot\Assets\images\icons\pay-visa.png" />
+    <None Include="wwwroot\Assets\images\items\.DS_Store" />
+    <None Include="wwwroot\Assets\images\items\1.jpg" />
+    <None Include="wwwroot\Assets\images\items\10.jpg" />
+    <None Include="wwwroot\Assets\images\items\11.jpg" />
+    <None Include="wwwroot\Assets\images\items\12.jpg" />
+    <None Include="wwwroot\Assets\images\items\13.jpg" />
+    <None Include="wwwroot\Assets\images\items\14.jpg" />
+    <None Include="wwwroot\Assets\images\items\15-1.jpg" />
+    <None Include="wwwroot\Assets\images\items\15-2.jpg" />
+    <None Include="wwwroot\Assets\images\items\15.jpg" />
+    <None Include="wwwroot\Assets\images\items\2.jpg" />
+    <None Include="wwwroot\Assets\images\items\3.jpg" />
+    <None Include="wwwroot\Assets\images\items\4.jpg" />
+    <None Include="wwwroot\Assets\images\items\5.jpg" />
+    <None Include="wwwroot\Assets\images\items\6.jpg" />
+    <None Include="wwwroot\Assets\images\items\7.jpg" />
+    <None Include="wwwroot\Assets\images\items\8.jpg" />
+    <None Include="wwwroot\Assets\images\items\9.jpg" />
+    <None Include="wwwroot\Assets\images\logo.png" />
+    <None Include="wwwroot\Assets\images\logo.svg" />
+    <None Include="wwwroot\Assets\images\logo1.png" />
+    <None Include="wwwroot\Assets\images\misc\appstore.png" />
+    <None Include="wwwroot\Assets\images\misc\payments.png" />
+    <None Include="wwwroot\Assets\images\misc\playmarket.png" />
+    <None Include="wwwroot\Assets\images\posts\.DS_Store" />
+    <None Include="wwwroot\Assets\images\posts\1.jpg" />
+    <None Include="wwwroot\Assets\images\posts\2.jpg" />
+    <None Include="wwwroot\Assets\images\posts\3.jpg" />
+    <None Include="wwwroot\Assets\images\posts\4.jpg" />
+    <None Include="wwwroot\Assets\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\Assets\js\jquery.min.js" />
+    <None Include="wwwroot\Assets\js\jquery-2.0.0.min.js" />
+    <None Include="wwwroot\Assets\js\script.js" />
+    <None Include="wwwroot\Assets\sass\.DS_Store" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_alert.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_background-variant.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_badge.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_border-radius.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_box-shadow.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_breakpoints.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_buttons.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_caret.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_clearfix.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_deprecate.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_float.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_forms.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_gradients.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_grid-framework.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_grid.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_hover.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_image.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_list-group.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_lists.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_nav-divider.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_pagination.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_reset-text.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_resize.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_screen-reader.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_size.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_table-row.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_text-emphasis.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_text-hide.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_text-truncate.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_transition.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\mixins\_visibility.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_align.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_background.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_borders.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_clearfix.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_display.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_embed.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_flex.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_float.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_overflow.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_position.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_screenreaders.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_shadows.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_sizing.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_spacing.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_stretched-link.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_text.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\utilities\_visibility.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\vendor\_rfs.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_alert.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_badge.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_bootstrap.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_breadcrumb.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_button-group.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_buttons.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_card.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_carousel.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_close.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_code.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_custom-forms.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_dropdown.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_forms.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_functions.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_grid.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_images.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_input-group.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_jumbotron.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_list-group.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_media.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_mixins.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_modal.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_nav.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_navbar.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_pagination.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_popover.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_print.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_progress.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_reboot.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_root.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_spinners.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_tables.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_toasts.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_tooltip.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_transitions.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_type.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_utilities.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap-assets\_variables.scss" />
+    <None Include="wwwroot\Assets\sass\bootstrap.scss" />
+    <None Include="wwwroot\Assets\sass\responsive.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\.DS_Store" />
+    <None Include="wwwroot\Assets\sass\ui-assets\components\_buttons.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\components\_cards-item.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\components\_elements.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\components\_forms.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\components\_items.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\components\_lists.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\components\_menu.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\components\_plugin-styles.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\helpers\.DS_Store" />
+    <None Include="wwwroot\Assets\sass\ui-assets\helpers\_bg.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\helpers\_helper-classes.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\helpers\_mixins.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\helpers\_typography.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\pages\_page-account.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\pages\_page-base.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\pages\_page-detail.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\pages\_page-home.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\pages\_page-listing.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\pages\_page-order.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\sections\_footer.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\sections\_header.scss" />
+    <None Include="wwwroot\Assets\sass\ui-assets\sections\_sidebar.scss" />
+    <None Include="wwwroot\Assets\sass\ui.scss" />
+    <None Include="wwwroot\Assets\sass\_variables-custom.scss" />
+  </ItemGroup>
+
+</Project>

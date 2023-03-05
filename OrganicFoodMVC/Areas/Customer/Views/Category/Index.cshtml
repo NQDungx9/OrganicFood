@@ -1,0 +1,138 @@
+﻿@model OrganicFoodMVC.Utility.PagedData<OrganicFoodMVC.Models.Product>
+@{
+    ViewData["Title"] = "Tất cả";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ string str = ViewContext.HttpContext.Request.Query["categoryId"];}
+
+@try
+{
+    if (int.Parse(str) > 0)
+    {
+        ViewData["Title"] = Model.Data.FirstOrDefault().Category.Name + " / " + ViewContext.HttpContext.Request.Query["productName"];
+    }
+    else if(int.Parse(str) == 0)
+    {
+        ViewData["Title"] = ViewData["Title"] + " / " + ViewContext.HttpContext.Request.Query["productName"];
+    }
+}catch{}
+
+
+<!-- =============== SECTION ITEMS =============== -->
+<section class="padding-bottom-sm">
+
+    <header class="section-heading heading-line">
+        <h4 class="title-section text-uppercase">@ViewData["Title"]</h4>
+    </header>
+
+
+    <div class="row row-sm">
+        @foreach (var product in Model.Data)
+        {
+            <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                <div class="card card-sm card-product-grid">
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@product.Id" class="img-wrap"> <img src="@product.ImageUrl"> </a>
+                    <figcaption class="info-wrap">
+                        <a asp-controller="Home" asp-action="Details" asp-route-id="@product.Id" class="title">@product.Name</a>
+                        <div class="price mt-1">@product.Price.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) / @product.Unit.Name</div> <!-- price-wrap.// -->
+                    </figcaption>
+                </div>
+            </div> <!-- col.// -->
+        }
+    </div> <!-- row.// -->
+</section>
+<!-- =============== SECTION ITEMS .//END =============== -->
+<!--Pagination-->
+<div class="row justify-content-center">
+    <nav aria-label="Page navigation sample" class="m-auto" id="paged">
+        <ul class="pagination">
+            <!--Trang dau-->
+            @if (Model.CurrentPage == 1)
+            {
+                <li class="page-item disabled"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="1">Trang đầu</a></li>
+            }
+            else
+            {
+                <li class="page-item"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="1">Trang đầu</a></li>
+            }
+
+            <!--Nhỏ hơn 5-->
+            @if (Model.TotalPages < 5)
+            {
+                for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    if (i == Model.CurrentPage)
+                    {
+                        <li class="page-item active"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@i">@i</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@i">@i</a></li>
+                    }
+
+                }
+
+            }
+            else
+            {
+
+                if (Model.CurrentPage < 4)
+                {
+                    <!--Lon hon 5-->
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        if (i == Model.CurrentPage)
+                        {
+                            <li class="page-item active"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@i">@i</a></li>
+                        }
+                    }
+                }
+                else if (Model.CurrentPage + 2 > Model.TotalPages)
+                {
+                    for (int i = Model.TotalPages - 4; i <= Model.TotalPages; i++)
+                    {
+                        if (i == Model.CurrentPage)
+                        {
+                            <li class="page-item active"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@i">@i</a></li>
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = Model.CurrentPage - 2; i <= Model.CurrentPage + 2; i++)
+                    {
+                        if (i == Model.CurrentPage)
+                        {
+                            <li class="page-item active"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@i">@i</a></li>
+                        }
+                    }
+                }
+
+            }
+
+            <!--trang cuoi-->
+            @if (Model.CurrentPage == Model.TotalPages)
+            {
+                <li class="page-item disabled"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@Model.TotalPages">Trang cuối</a></li>
+            }
+            else
+            {
+                <li class="page-item"><a class="page-link" asp-area="Customer" asp-controller="Category" asp-action="index" asp-route-categoryId='@ViewContext.HttpContext.Request.Query["categoryId"]' asp-route-productName='@ViewContext.HttpContext.Request.Query["productName"]' asp-route-pageNumber="@Model.TotalPages">Trang cuối</a></li>
+            }
+
+        </ul>
+    </nav>
+</div>

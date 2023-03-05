@@ -1,0 +1,40 @@
+﻿@using System.Web
+<form method="get" asp-area="Customer" asp-controller="Category" asp-action="index" class="search-header">
+    <div class="input-group w-100">
+        <select class="custom-select border-right" name="categoryId" id="mySelectBox">
+            <option value="0" name="0">Tất cả</option>
+            
+            @foreach (var item in Model)
+            {
+                <option value="@item.Id" name="@item.Id">@item.Name</option>
+            }
+        </select>
+        <input id="myInputSearch" type="text" class="form-control" name="productName" placeholder="Nhập sản phẩm cần tìm">
+
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i> Tìm kiếm
+            </button>
+        </div>
+    </div>
+</form>
+
+<!--selected opition and add name input search-->
+<script>
+    $.urlParam = function (name) {
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null) {
+            return null;
+        }
+        return decodeURI(results[1]);
+    }
+    var categoryId = $.urlParam('categoryId');
+    var nameSearch = $.urlParam('productName');
+
+    if (categoryId != null) {
+        $("#mySelectBox").val(categoryId).change();
+    }
+    if (nameSearch != null) {
+        $("#myInputSearch").val(nameSearch.split('+').join(' '));
+    }
+</script>
